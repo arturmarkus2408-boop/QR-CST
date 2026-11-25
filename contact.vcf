@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N;CHARSET=UTF-8:Погодаев;Алексей;Евгеньевич;;
+FN;CHARSET=UTF-8:Алексей Погодаев
+ORG;CHARSET=UTF-8:Cotton Stalk Technology
+TITLE;CHARSET=UTF-8:Директор
+TEL;TYPE=CELL,VOICE:+998907540719
+EMAIL;TYPE=INTERNET,WORK:Alexeypogodaev@gmail.com
+ADR;TYPE=WORK;CHARSET=UTF-8:;;ул. Дурмон йули\, д. 1\, МСГ Навнихол;Ташкент;Мирзо-Улугбекский район;;Узбекистан
+URL:https://arturmarkus2408-boop.github.io/QR-CST/
+NOTE;CHARSET=UTF-8:ООО «COTTON STALK TECHNOLODGY» · ИНН 313442297
+END:VCARD
