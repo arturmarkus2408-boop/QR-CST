@@ -33,7 +33,8 @@
       'bank.acUSD': 'Р/с (USD)',
       'docs.title': 'Документы',
       'docs.text': 'Свидетельство о государственной регистрации',
-      'docs.open': 'Открыть PDF'
+      'docs.open': 'Открыть PDF',
+      'docs.view': 'Открыть'
     },
     uz: {
       'doc.title': 'Cotton Stalk Technology — Toshkent',
@@ -66,7 +67,8 @@
       'bank.acUSD': 'H/r (USD)',
       'docs.title': 'Hujjatlar',
       'docs.text': 'Davlat ro‘yxatidan o‘tkazilganlik to‘g‘risidagi guvohnoma',
-      'docs.open': 'PDF ochish'
+      'docs.open': 'PDF ochish',
+      'docs.view': 'Ko‘rish'
     },
     en: {
       'doc.title': 'Cotton Stalk Technology — Tashkent',
@@ -99,7 +101,8 @@
       'bank.acUSD': 'Account (USD)',
       'docs.title': 'Documents',
       'docs.text': 'Certificate of state registration',
-      'docs.open': 'Open PDF'
+      'docs.open': 'Open PDF',
+      'docs.view': 'Open'
     }
   };
 
@@ -135,6 +138,7 @@
     document.querySelectorAll('.lang button').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
     });
+    setDocCard(lang);
   }
 
   /* ---------- clipboard ---------- */
@@ -208,20 +212,39 @@
     }
   });
 
-  /* ---------- document preview ---------- */
+  /* ---------- document card + preview ---------- */
+  function docPath(lang, kind) {
+    return 'docs/certificate-' + lang + (kind ? '-' + kind + '.webp' : '.pdf');
+  }
+
+  function setDocCard(lang) {
+    var card = document.getElementById('docCard');
+    if (!card) return;
+    card.href = docPath(lang);
+    document.getElementById('docCardImg').src = docPath(lang, 'card');
+  }
+
   var viewer = document.getElementById('viewer');
   if (viewer && typeof viewer.showModal === 'function') {
     var vImg = document.getElementById('viewerImg');
     var vPdf = document.getElementById('viewerPdf');
-    document.querySelectorAll('.doc').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        e.preventDefault();
-        vImg.src = a.getAttribute('data-preview');
-        vImg.alt = a.querySelector('img').alt;
-        vPdf.href = a.getAttribute('href');
-        viewer.showModal();
-        viewer.scrollTop = 0;
+
+    var showDoc = function (lang) {
+      vImg.src = 'docs/certificate-' + lang + '.webp';
+      vPdf.href = docPath(lang);
+      viewer.querySelectorAll('[data-doc-lang]').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute('data-doc-lang') === lang));
       });
+    };
+
+    document.getElementById('docCard').addEventListener('click', function (e) {
+      e.preventDefault();
+      showDoc(current);
+      viewer.showModal();
+      viewer.scrollTop = 0;
+    });
+    viewer.querySelectorAll('[data-doc-lang]').forEach(function (b) {
+      b.addEventListener('click', function () { showDoc(b.getAttribute('data-doc-lang')); });
     });
     document.getElementById('viewerClose').addEventListener('click', function () { viewer.close(); });
     // close when tapping the dark area around the page

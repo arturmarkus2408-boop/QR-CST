@@ -144,21 +144,19 @@
 
   <section class="block">
     <h2 data-i18n="docs.title">Документы</h2>
-    <p class="docs-text" data-i18n="docs.text">Свидетельство о государственной регистрации</p>
-    <div class="docs">
-      <a class="doc" href="docs/certificate-ru.pdf" data-preview="docs/certificate-ru.webp" target="_blank" rel="noopener">
-        <img src="docs/certificate-ru-thumb.webp" alt="Свидетельство (RU)" width="360" height="509" loading="lazy">
-        <span class="doc__name">Русский</span>
-      </a>
-      <a class="doc" href="docs/certificate-uz.pdf" data-preview="docs/certificate-uz.webp" target="_blank" rel="noopener">
-        <img src="docs/certificate-uz-thumb.webp" alt="Guvohnoma (UZ)" width="360" height="509" loading="lazy">
-        <span class="doc__name">O‘zbekcha</span>
-      </a>
-      <a class="doc" href="docs/certificate-en.pdf" data-preview="docs/certificate-en.webp" target="_blank" rel="noopener">
-        <img src="docs/certificate-en-thumb.webp" alt="Certificate (EN)" width="360" height="509" loading="lazy">
-        <span class="doc__name">English</span>
-      </a>
-    </div>
+    <a class="doc-card" id="docCard" href="docs/certificate-ru.pdf" target="_blank" rel="noopener" aria-haspopup="dialog">
+      <span class="doc-card__preview">
+        <img id="docCardImg" src="docs/certificate-ru-card.webp" alt="" width="1040" height="780" loading="lazy">
+        <span class="doc-card__open">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M10.5 7.8v5.4M7.8 10.5h5.4"/></svg>
+          <span data-i18n="docs.view">Открыть</span>
+        </span>
+      </span>
+      <span class="doc-card__body">
+        <span class="doc-card__title" data-i18n="docs.text">Свидетельство о государственной регистрации</span>
+        <span class="doc-card__meta">№ 3395618 · 27.10.2026</span>
+      </span>
+    </a>
   </section>
 
   <footer class="foot">© <span id="year">2026</span> <span data-i18n="co.nameV">ООО «COTTON STALK TECHNOLODGY»</span></footer>
@@ -166,10 +164,17 @@
 
 <dialog class="viewer" id="viewer" aria-label="Document preview">
   <div class="viewer__bar">
-    <a class="viewer__pdf" id="viewerPdf" href="docs/certificate-ru.pdf" target="_blank" rel="noopener" data-i18n="docs.open">Открыть PDF</a>
-    <button type="button" class="viewer__close" id="viewerClose" aria-label="Закрыть">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-    </button>
+    <div class="viewer__langs" role="group" aria-label="Language of the document">
+      <button type="button" data-doc-lang="ru" aria-pressed="true">RU</button>
+      <button type="button" data-doc-lang="uz" aria-pressed="false">UZ</button>
+      <button type="button" data-doc-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <div class="viewer__right">
+      <a class="viewer__pdf" id="viewerPdf" href="docs/certificate-ru.pdf" target="_blank" rel="noopener" data-i18n="docs.open">Открыть PDF</a>
+      <button type="button" class="viewer__close" id="viewerClose" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
   </div>
   <img class="viewer__img" id="viewerImg" alt="" width="1400" height="1981">
 </dialog>
