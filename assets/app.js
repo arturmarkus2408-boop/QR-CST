@@ -32,7 +32,8 @@
       'bank.acUZS': 'Р/с (UZS)',
       'bank.acUSD': 'Р/с (USD)',
       'docs.title': 'Документы',
-      'docs.text': 'Свидетельство о государственной регистрации'
+      'docs.text': 'Свидетельство о государственной регистрации',
+      'docs.open': 'Открыть PDF'
     },
     uz: {
       'doc.title': 'Cotton Stalk Technology — Toshkent',
@@ -64,7 +65,8 @@
       'bank.acUZS': 'H/r (UZS)',
       'bank.acUSD': 'H/r (USD)',
       'docs.title': 'Hujjatlar',
-      'docs.text': 'Davlat ro‘yxatidan o‘tkazilganlik to‘g‘risidagi guvohnoma'
+      'docs.text': 'Davlat ro‘yxatidan o‘tkazilganlik to‘g‘risidagi guvohnoma',
+      'docs.open': 'PDF ochish'
     },
     en: {
       'doc.title': 'Cotton Stalk Technology — Tashkent',
@@ -96,7 +98,8 @@
       'bank.acUZS': 'Account (UZS)',
       'bank.acUSD': 'Account (USD)',
       'docs.title': 'Documents',
-      'docs.text': 'Certificate of state registration'
+      'docs.text': 'Certificate of state registration',
+      'docs.open': 'Open PDF'
     }
   };
 
@@ -204,6 +207,28 @@
       storageSet('cst-lang', lang);
     }
   });
+
+  /* ---------- document preview ---------- */
+  var viewer = document.getElementById('viewer');
+  if (viewer && typeof viewer.showModal === 'function') {
+    var vImg = document.getElementById('viewerImg');
+    var vPdf = document.getElementById('viewerPdf');
+    document.querySelectorAll('.doc').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        vImg.src = a.getAttribute('data-preview');
+        vImg.alt = a.querySelector('img').alt;
+        vPdf.href = a.getAttribute('href');
+        viewer.showModal();
+        viewer.scrollTop = 0;
+      });
+    });
+    document.getElementById('viewerClose').addEventListener('click', function () { viewer.close(); });
+    // close when tapping the dark area around the page
+    viewer.addEventListener('click', function (e) {
+      if (e.target === viewer) viewer.close();
+    });
+  }
 
   document.getElementById('year').textContent = new Date().getFullYear();
   applyLang(detectLang());

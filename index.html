@@ -146,14 +146,33 @@
     <h2 data-i18n="docs.title">Документы</h2>
     <p class="docs-text" data-i18n="docs.text">Свидетельство о государственной регистрации</p>
     <div class="docs">
-      <a href="docs/certificate-ru.pdf" target="_blank" rel="noopener">RU · PDF</a>
-      <a href="docs/certificate-uz.pdf" target="_blank" rel="noopener">UZ · PDF</a>
-      <a href="docs/certificate-en.pdf" target="_blank" rel="noopener">EN · PDF</a>
+      <a class="doc" href="docs/certificate-ru.pdf" data-preview="docs/certificate-ru.webp" target="_blank" rel="noopener">
+        <img src="docs/certificate-ru-thumb.webp" alt="Свидетельство (RU)" width="360" height="509" loading="lazy">
+        <span class="doc__name">Русский</span>
+      </a>
+      <a class="doc" href="docs/certificate-uz.pdf" data-preview="docs/certificate-uz.webp" target="_blank" rel="noopener">
+        <img src="docs/certificate-uz-thumb.webp" alt="Guvohnoma (UZ)" width="360" height="509" loading="lazy">
+        <span class="doc__name">O‘zbekcha</span>
+      </a>
+      <a class="doc" href="docs/certificate-en.pdf" data-preview="docs/certificate-en.webp" target="_blank" rel="noopener">
+        <img src="docs/certificate-en-thumb.webp" alt="Certificate (EN)" width="360" height="509" loading="lazy">
+        <span class="doc__name">English</span>
+      </a>
     </div>
   </section>
 
   <footer class="foot">© <span id="year">2026</span> <span data-i18n="co.nameV">ООО «COTTON STALK TECHNOLODGY»</span></footer>
 </main>
+
+<dialog class="viewer" id="viewer" aria-label="Document preview">
+  <div class="viewer__bar">
+    <a class="viewer__pdf" id="viewerPdf" href="docs/certificate-ru.pdf" target="_blank" rel="noopener" data-i18n="docs.open">Открыть PDF</a>
+    <button type="button" class="viewer__close" id="viewerClose" aria-label="Закрыть">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </div>
+  <img class="viewer__img" id="viewerImg" alt="" width="1400" height="1981">
+</dialog>
 
 <script src="assets/app.js" defer></script>
 </body>
